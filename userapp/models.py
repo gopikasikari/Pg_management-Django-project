@@ -1,0 +1,56 @@
+from django.db import models
+from adminapp.models import Room,Bed 
+
+
+
+class User(models.Model):
+    username=models.CharField(max_length=200)
+    email=models.EmailField(unique=True)
+    phone=models.CharField(max_length=50)
+    password=models.CharField(max_length=200)
+
+
+    def __str(self):
+        return self.username
+
+
+class UserProfile(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    city=models.CharField(max_length=100)
+    pincode=models.CharField(max_length=50)
+    state=models.CharField(max_length=100)
+    country=models.CharField(max_length=100)
+    address=models.TextField(default='')
+    bio=models.TextField()
+    aadhar_no=models.BigIntegerField()
+    aadhar_image=models.ImageField(upload_to="proof/")
+    profile_pic=models.ImageField(upload_to="users/")
+
+
+    def __str__(self):
+        return f"{self.user.username} Profile"
+
+
+class Booking(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    room=models.ForeignKey(Room,on_delete=models.CASCADE)
+    bed=models.ForeignKey(Bed,on_delete=models.CASCADE)
+    booking=models.DateTimeField(auto_now_add=True)
+    status=models.CharField(max_length=100,default="pending")
+
+    def __str__(self):
+        return f"{self.user.username}-{self.room.room_no}-{self.bed.bed_no}"
+
+
+class Complaint(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    title=models.CharField(max_length=100)
+    description=models.TextField()
+    complaint_date=models.DateTimeField(auto_now_add=True)
+    status=models.CharField(max_length=150,default="Not Reserved")
+
+
+    def __str__(self):
+        return f"{self.user.username} made a complaint"
+
+# Create your models here.

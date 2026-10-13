@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Room Details</h1>
+    <img src="{{room.room_image.url}}" height="200px" width="200px" alt="">
+    <h2>Room no:{{room.room_no}}</h2>
+    <h3>Floor no:{{room.floor}}</h3>
+    <h3>room_type:{{room.room_type}}</h3>
+    <h3> number of beds:{{room.total_beds}}</h3>
+    <h3> monthly rent:{{room.monthly_rent}}</h3>
+    <h3>status:{{room.status}}</h3>
+    <h2>Available beds</h2>
+    {% for i in beds %}
+
+    <h3>bed number:{{i.bed_no}}</h3>
+    {% if i.status == "available" %}
+       <form method="post" action=" {% url 'book_room_link' room.id i.id %}">
+        {% csrf_token %}
+            <button>book now</button>
+        </form>
+    {% else %}
+        <button>Not Available</button>
+    {% endif %}
+    {% empty %}
+    <p>no beds found i this room</p>
+    {% endfor %}
+</body>
+</html>

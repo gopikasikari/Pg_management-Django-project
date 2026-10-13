@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center><h1>add room</h1></center>
+    <center>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" placeholder="enter room no" required name="room_no"><br>
+        <input type="text" placeholder="enter floor no" required name="floor_no"><br>
+        <select name="room_type">
+            <option value="">select room type</option>
+            <option value="2">2 sharing</option>
+            <option value="3"> 3 sharing</option>
+            <option value="4">4 sharing</option>
+        </select><br>
+        <input type="text" placeholder="enter no of beds" required name="bed_no" min="1"><br>
+        <input type="text" placeholder="enter rent" required name="rent"><br>
+        <textarea name="description" placeholder="enter description" required></textarea><br>
+        <input type="number" placeholder="enter rating" required name="rating"><br>
+        <textarea name="review" required placeholder="enter review"></textarea><br>
+        <select name="status" required>
+              <option value="">select status</option>
+               <option value="available">available</option>
+               <option value="full">full</option>
+        </select>
+
+        <input type="file" required name="room_image"><br>
+        <button>add room</button>
+      
+
+    </form>
+</center>
+</body>
+</html>

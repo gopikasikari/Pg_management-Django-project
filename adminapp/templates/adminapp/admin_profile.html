@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;margin: 0;
+    }
+    .navbar{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background:linear-gradient(to right,rgb(238, 116, 236), rgb(240, 19, 207));
+      color: white;
+      height: 75px;
+    }
+    .right{
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="left">
+      <a href="{% url 'admin_dashboard_link' %}"><h2>Back to Dashboard</h2></a>
+    </div>
+    <div class="right">
+      <a href="{% url 'admin_profile_update_link' %}"><h2>Update Profile</h2></a>
+    </div>
+  </div>
+  <center><h1>Profile</h1></center>
+  <h1>{{admin.username}}</h1>
+  <h2>{{admin.email}}</h2>
+  <h2>{{admin.phone}}</h2>
+  <img src="{{admin.admin_pic.url}}" height="200px" width="400px" alt={{admin.username}}>
+</body>
+</html>

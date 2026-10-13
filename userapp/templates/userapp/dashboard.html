@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navbar{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 75px;
+            width: 100%;
+            background-color: blueviolet;
+            color: white;
+        }
+        .right{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 30%;
+        }
+        .image{
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
+      box-shadow: 0 0 10px black;
+      border-radius: 20px;
+    }
+    .container .image > img{
+      border-radius: 20px;
+    }
+       
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="left">
+            <h2>LOGO</h2>
+        </div>
+        <div class="right">
+            <h2>View Fees</h2>
+            <h2>View Notice</h2>
+            <h2>View Food</h2>
+            <h2>Profile</h2>
+        </div>
+    </div>
+    <center><h1>welcome ,{{username}}</h1></center>
+    {% for i in rooms %}
+    
+    <div class="image">
+        <h1>{{i.id}}</h1>
+        <img src="{{i.room_image.url}}" alt="" height="200px" width:300px>
+        <a href="{% url 'user_room_view_link' i.id%}"></a>
+        <a href="{% url 'user_room_view_link' i.id %}"><button>view room</button></a>
+    </div>
+    {% endfor %}
+</body>
+</html>
